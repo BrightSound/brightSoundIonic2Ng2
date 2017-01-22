@@ -18,7 +18,10 @@ export class LoginPage {
             [
               Validators.required,
               Validators.minLength(8),
-              Validators.maxLength(20)
+              Validators.maxLength(20),
+              Validators.pattern('[*@!#%&()^~{}]+'),
+              Validators.pattern('[A-Z]+'),
+              Validators.pattern('[a-z]+')
             ]
           )
         ]

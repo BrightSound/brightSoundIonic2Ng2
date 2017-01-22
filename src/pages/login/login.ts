@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder }
   from '@angular/forms';
+import { forbiddenNameValidator } from '../../app/forbidden-name.directive';
 
 @Component({
   selector: 'page-login',
@@ -11,7 +12,15 @@ export class LoginPage {
 
   constructor(fb: FormBuilder) {
     this.form = fb.group({
-      "email":["", Validators.required],
+      "email":
+        [ "",
+          Validators.compose(
+            [
+              Validators.required,
+              forbiddenNameValidator((/bob/i))
+            ]
+          )
+        ],
       "password":
         [ "",
           Validators.compose(

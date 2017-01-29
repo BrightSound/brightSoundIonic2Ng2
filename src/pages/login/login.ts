@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder }
+import { FormGroup, Validators, FormBuilder }
   from '@angular/forms';
-import { GlobalValidators } from '../../app/forbidden-name.directive';
+import { GlobalValidators } from '../../app/shared/validators/global-validators';
 
 @Component({
   selector: 'page-login',

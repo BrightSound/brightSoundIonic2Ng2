@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder }
   from '@angular/forms';
-import { forbiddenNameValidator } from '../../app/forbidden-name.directive';
+import { GlobalValidators } from '../../app/forbidden-name.directive';
 
 @Component({
   selector: 'page-login',
@@ -17,7 +17,7 @@ export class LoginPage {
           Validators.compose(
             [
               Validators.required,
-              forbiddenNameValidator((/bob/i))
+              GlobalValidators.email
             ]
           )
         ],
@@ -26,11 +26,7 @@ export class LoginPage {
           Validators.compose(
             [
               Validators.required,
-              Validators.minLength(8),
-              Validators.maxLength(20),
-              Validators.pattern('[*@!#%&()^~{}]+'),
-              Validators.pattern('[A-Z]+'),
-              Validators.pattern('[a-z]+')
+              GlobalValidators.password
             ]
           )
         ]

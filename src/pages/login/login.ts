@@ -2,8 +2,12 @@ import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder }
   from '@angular/forms';
 import { GlobalValidators } from '../../app/shared/validators/global-validators';
-import { Http } from '@angular/http';
-import { URLSearchParams } from '@angular/http';
+import {
+          Http,
+          Headers,
+          URLSearchParams,
+          RequestOptions
+       } from '@angular/http';
 
 @Component({
   selector: 'page-login',
@@ -39,13 +43,22 @@ export class LoginPage {
   public login() {
     var form = this.form.value;
 
-    let params = new URLSearchParams();
-    params.set('email', form.email);
-    params.set('password', form.password);
+    // let params = new URLSearchParams();
+    // params.set('email', form.email);
+    // params.set('password', form.password);
+    var params =
+      {
+        'email': form.email,
+        'password': form.password
+      }
 
-    this.http.get(
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    this.http.post(
       'http://localhost:9292/api/authentication/login',
-      { search: params }
+      params,
+      options
     ).subscribe(res => this.user = res.json());
 
     console.log(this.user);

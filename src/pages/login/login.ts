@@ -5,7 +5,6 @@ import { GlobalValidators } from '../../app/shared/validators/global-validators'
 import {
           Http,
           Headers,
-          URLSearchParams,
           RequestOptions
        } from '@angular/http';
 
@@ -43,9 +42,6 @@ export class LoginPage {
   public login() {
     var form = this.form.value;
 
-    // let params = new URLSearchParams();
-    // params.set('email', form.email);
-    // params.set('password', form.password);
     var params =
       {
         'email': form.email,

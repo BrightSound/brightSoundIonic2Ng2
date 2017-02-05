@@ -27,6 +27,23 @@
                 formControlName="password">
               </ion-input>
             </ion-item>
+            <div *ngIf="!form.controls['password'].valid">
+              <p *ngIf="form.controls['password'].hasError('required')">
+                * required
+              </p>
+              <p *ngIf="form.controls['password'].hasError('digit_required')">
+                * at least one digit is required
+              </p>
+              <p *ngIf="form.controls['password'].hasError('downcase_required')">
+                * at least one downcase letter is required
+              </p>
+              <p *ngIf="form.controls['password'].hasError('upcase_required')">
+                * at least one upcase letter is required
+              </p>
+              <p *ngIf="form.controls['password'].hasError('proper_length_required')">
+                * length should be between 8 and 20 symbols
+              </p>
+            </div>
 
           </ion-list>
         </ion-col>

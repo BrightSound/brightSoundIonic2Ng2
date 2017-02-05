@@ -16,25 +16,25 @@ export class GlobalValidators {
 
     if(!digit_regexp.test(control.value)){
       return {
-        "not containing at least one digit": true
+        "digit_required": true
       };
     }
 
     if(!downcase_regexp.test(control.value)){
       return {
-        "not containing at least one downcase letter": true
+        "downcase_required": true
       };
     }
 
     if(!upcase_regexp.test(control.value)){
       return {
-        "not containing at least one upcase letter": true
+        "upcase_required": true
       };
     }
 
     if(!length_regexp.test(control.value)){
       return {
-        "length is not between 8 and 20 symbols": true
+        "proper_length_required": true
       };
     }
 

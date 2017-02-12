@@ -4,7 +4,7 @@ export class GlobalValidators {
   static email(control: FormControl): any {
     const email_regexp = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i
     return email_regexp.test(control.value) ? null : {
-        "not a valid email": true
+        "not_a_valid_email": true
       }
   };
 

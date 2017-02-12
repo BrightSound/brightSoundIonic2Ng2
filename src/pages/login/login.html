@@ -19,6 +19,14 @@
                 formControlName="email">
               </ion-input>
             </ion-item>
+            <div *ngIf="!form.controls['email'].valid">
+              <p *ngIf="form.controls['email'].hasError('required')">
+                * required
+              </p>
+              <p *ngIf="form.controls['email'].hasError('not_a_valid_email')">
+                * valid email required
+              </p>
+            </div>
 
             <ion-item>
               <ion-label floating>Password</ion-label>

@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder }
   from '@angular/forms';
 import { GlobalValidators } from '../../app/shared/validators/global-validators';
-import {
-          Http,
-          Headers,
-          RequestOptions
-       } from '@angular/http';
+import { User } from '../../app/shared/models/user'
+import { AuthenticationService } from '../../app/shared/services/authentication.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'page-login',
@@ -14,9 +13,10 @@ import {
 })
 export class LoginPage {
   form: FormGroup;
-  user: String;
+  user: User;
+  errorMessage: string;
 
-  constructor(fb: FormBuilder, private http: Http) {
+  constructor(fb: FormBuilder, private authenticationService: AuthenticationService) {
     this.form = fb.group({
       "email":
         [ "",
@@ -40,25 +40,12 @@ export class LoginPage {
   }
 
   public login() {
-    var form = this.form.value;
-
-    var params =
-      {
-        'email': form.email,
-        'password': form.password
-      }
-
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    this.http.post(
-      'http://localhost:9292/api/authentication/login',
-      params,
-      options
-    ).subscribe(res => this.user = res.json());
-
-    console.log(this.user);
-
+    let form = this.form.value
+    this.authenticationService.logIn(form.email, form.password)
+      .subscribe(
+        user => this.user = user,
+        error => this.errorMessage = <any> error
+      );
   }
 
 }

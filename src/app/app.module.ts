@@ -1,5 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
+
+import { AuthenticationService } from './shared/services/authentication.service';
+
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -18,6 +22,7 @@ import { LoginPage } from '../pages/login/login';
     LoginPage
   ],
   imports: [
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -29,6 +34,9 @@ import { LoginPage } from '../pages/login/login';
     TabsPage,
     LoginPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationService
+    ]
 })
 export class AppModule {}

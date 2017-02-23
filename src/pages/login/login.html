@@ -19,7 +19,7 @@
                 formControlName="email">
               </ion-input>
             </ion-item>
-            <div *ngIf="!form.controls['email'].valid">
+            <div *ngIf="form.controls['email'].touched && !form.controls['email'].valid">
               <p *ngIf="form.controls['email'].hasError('required')">
                 * required
               </p>
@@ -35,7 +35,7 @@
                 formControlName="password">
               </ion-input>
             </ion-item>
-            <div *ngIf="!form.controls['password'].valid">
+            <div *ngIf="form.controls['password'].touched && !form.controls['password'].valid">
               <p *ngIf="form.controls['password'].hasError('required')">
                 * required
               </p>

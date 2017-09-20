@@ -17,6 +17,7 @@ export class LoginPage {
   errorMessage: string;
 
   constructor(fb: FormBuilder, private authenticationService: AuthenticationService) {
+    this.user = {email: 'dsadsad@ddadsa'};
     this.form = fb.group({
       "email":
         [ "",
@@ -40,10 +41,14 @@ export class LoginPage {
   }
 
   public login() {
-    let form = this.form.value
+    let form = this.form.value;
+    let self = this;
     this.authenticationService.logIn(form.email, form.password)
       .subscribe(
-        user => this.user = user,
+        function(jopa){
+          this.user = {email: jopa.email, access_token: jopa.access_token};
+          this._cookieService.put('_bs_session', this.user.access_token);
+        },
         error => this.errorMessage = <any> error
       );
   }

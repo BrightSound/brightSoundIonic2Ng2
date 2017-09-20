@@ -12,7 +12,7 @@ export class GlobalValidators {
     const digit_regexp    = /^(?=.*\d)/;
     const downcase_regexp = /^(?=.*[a-z])/;
     const upcase_regexp   = /^(?=.*[A-Z])/;
-    const length_regexp   = /^.{8,20}$/;
+    const length_regexp   = /^.{8,64}$/;
 
     if(!digit_regexp.test(control.value)){
       return {

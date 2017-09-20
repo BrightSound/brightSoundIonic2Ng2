@@ -7,7 +7,7 @@
     <ion-col></ion-col>
   </ion-row>
   <div class="login-box">
-    <form (ngSubmit)="login()" [formGroup]="form">
+    <form [formGroup]="form">
       <ion-row>
         <ion-col>
           <ion-list inset>
@@ -61,7 +61,8 @@
         <ion-col class="signup-col">
           <button ion-button full
             class="submit-btn"
-            type="submit"
+            type="button"
+            (click)="login()"
             [disabled]="!form.valid">
 
             Login
